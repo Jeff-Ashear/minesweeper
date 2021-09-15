@@ -21,44 +21,9 @@ let board = [
     ['?', '*', '*', '?', '?'],
     ['?', '?', '?', '*', '?']
 ]
-
-const minesweeper_guess = (board, y, x) => {
-    //convert x and y values to the correct position in the arrays
-    //y will select the correct array
-    //x will select the possition in the "y" array
-    let line = board[y]
-    let guess = line[x]
-    let mines = 0
-
-    if (guess === "*") {
-        return "BOOM!"
-    } else {
-        //check line -1
-        let row
-        for (let i = y - 1; i <= y + 1; ++i) {
-            if (i < 0 || i > board.length - 1) {
-                continue
-            }
-            
-            row = board[i]
-            for (let j = x - 1; j <= x + 1; ++j) {               
-                if (j < 0 || j > row.length - 1) {
-                    continue
-                }
-                console.log(mines)
-                if (row[j] === "*") {
-                    mines = mines + 1
-                }
-            }
-        }
-
-        board[y][x] = mines.toString();
-        return board
-    }
-}
 //
 // minesweeper_guess(board, 0, 2) prints “BOOM!”
-console.log(minesweeper_guess(board, 0, 2))
+// console.log(minesweeper_guess(board, 0, 2))
 //
 // minesweeper_guess(board, 0, 3) prints the following board:
 // [  ['?', '?', '*', '1', '?'],
@@ -66,7 +31,7 @@ console.log(minesweeper_guess(board, 0, 2))
 //    ['?', '*', '*', '?', '?'],
 //    ['?', '?', '?', '*', '?']
 // ]
-console.log(minesweeper_guess(board, 0, 3))
+// console.log(minesweeper_guess(board, 0, 3))
 //
 // minesweeper_guess(board, 1, 4) prints the following board:
 // [  ['?', '?', '*', '1', '0'],
@@ -74,10 +39,36 @@ console.log(minesweeper_guess(board, 0, 3))
 //    ['?', '*', '*', '2', '1'],
 //    ['?', '?', '?', '*', '?']
 // ]
-// const add = (a, b) => {
-//     return a + b
-// }
 
-// f(x) = 2x + 5
-// f(a,b) = a + b
+const minesweeper2_guess = (board, y, x) => {
+    let guess = board[y][x]
+    let mines = 0
 
+    console.log(guess)
+    if (guess === "*") {
+        return "BOOM!"
+    } else {
+       let row
+       for (let i = y - 1; i <= y + 1; ++i) {
+           if (i < 0 || i > board.length - 1) {
+               continue
+           }
+           row = board[i]
+        //    console.log(i, row)
+           for (let j = x - 1; j <= x + 1; ++j) {
+               if (j < 0 || j > row.length - 1) {
+                   continue
+               }
+               console.log(mines)
+               if (row[j] === "*") {
+                   mines = mines + 1
+               }
+           }
+       }
+    }
+
+    board[y][x] = mines.toString()
+    return board
+}
+
+console.log(minesweeper2_guess(board, 0, 3))
